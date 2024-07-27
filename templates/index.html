@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Telegram Bot Web Page</title>
+</head>
+<body>
+    <div class="container">
+        <div id="grid">
+            {% for i in range(25) %}
+                <div class="cell" id="cell-{{ i }}">
+                    <div class="cell-inner">
+                        <div class="cell-front"></div>
+                        <div class="cell-back"></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button id="get-signal">Получить сигнал</button>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <label for="number-select">Выберите число:</label>
+            <div id="number-select" class="number-picker">
+                <div class="number-option"></div>
+                <div class="number-option"></div>
+                {% for i in range(2, 26) %}
+                    <div class="number-option">{{ i }}</div>
+                {% endfor %}
+                <div class="number-option"></div>
+                <div class="number-option"></div>
+            </div>
+            <button id="confirm">Подтвердить</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
