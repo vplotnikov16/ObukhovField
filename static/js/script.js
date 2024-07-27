@@ -35,7 +35,7 @@ function animateStars(positions) {
             cell.querySelector('.cell-back').innerHTML = '⭐';
             cell.classList.add('flip');
             index++;
-            setTimeout(showStar, 1000);
+            setTimeout(showStar, 500);
         }
     }
     showStar();
@@ -65,7 +65,6 @@ function getSelectedNumber() {
     return selectedNumber;
 }
 
-// Добавляем прослушиватель событий для прокрутки
 document.getElementById('number-select').addEventListener('scroll', function() {
     const numberPicker = document.getElementById('number-select');
     const options = numberPicker.getElementsByClassName('number-option');

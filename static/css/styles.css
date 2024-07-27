@@ -35,7 +35,7 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 1s;
+    transition: transform 0.6s;
     transform-style: preserve-3d;
 }
 
@@ -90,10 +90,13 @@ button {
     border: 1px solid #888;
     width: 300px;
     text-align: center;
+    position: relative;
 }
 
 .close-button {
-    float: right;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     font-size: 28px;
     font-weight: bold;
 }
@@ -141,4 +144,19 @@ button {
 
 .number-picker::after {
     bottom: 0;
+}
+
+#winners-text {
+    font-size: 20px;
+    color: grey;
+    animation: fadeInOut 3s infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
