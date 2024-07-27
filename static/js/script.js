@@ -66,6 +66,46 @@ function getSelectedNumber() {
 }
 
 document.getElementById('number-select').addEventListener('scroll', function() {
+    highlightSelectedOption();
+});
+
+let touchstartY = 0;
+let currentScrollY = 0;
+
+document.getElementById('number-select').addEventListener('touchstart', function(event) {
+    touchstartY = event.changedTouches[0].screenY;
+    currentScrollY = document.getElementById('number-select').scrollTop;
+});
+
+document.getElementById('number-select').addEventListener('touchmove', function(event) {
+    const touchmoveY = event.changedTouches[0].screenY;
+    const distance = touchstartY - touchmoveY;
+    document.getElementById('number-select').scrollTop = currentScrollY + distance;
+});
+
+document.getElementById('number-select').addEventListener('touchend', function(event) {
+    const numberPicker = document.getElementById('number-select');
+    const options = numberPicker.getElementsByClassName('number-option');
+    const pickerHeight = numberPicker.clientHeight;
+    let closestOption = options[0];
+    let closestDistance = Infinity;
+
+    for (let option of options) {
+        const optionRect = option.getBoundingClientRect();
+        const pickerRect = numberPicker.getBoundingClientRect();
+        const distance = Math.abs(optionRect.top + optionRect.height / 2 - pickerRect.top - pickerHeight / 2);
+
+        if (distance < closestDistance) {
+            closestOption = option;
+            closestDistance = distance;
+        }
+    }
+
+    numberPicker.scrollTop = closestOption.offsetTop - pickerHeight / 2 + closestOption.clientHeight / 2;
+    highlightSelectedOption();
+});
+
+function highlightSelectedOption() {
     const numberPicker = document.getElementById('number-select');
     const options = numberPicker.getElementsByClassName('number-option');
     const pickerHeight = numberPicker.clientHeight;
@@ -81,4 +121,4 @@ document.getElementById('number-select').addEventListener('scroll', function() {
             option.classList.remove('selected');
         }
     }
-});
+}
