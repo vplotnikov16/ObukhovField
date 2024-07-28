@@ -1,5 +1,6 @@
 document.getElementById('get-signal').addEventListener('click', function() {
     document.getElementById('modal').style.display = 'block';
+    centerSelectedNumber();
 });
 
 document.getElementById('confirm').addEventListener('click', function() {
@@ -22,7 +23,7 @@ document.getElementById('confirm').addEventListener('click', function() {
 function clearGrid() {
     for (let i = 0; i < 25; i++) {
         const cell = document.getElementById(`cell-${i}`);
-        cell.innerHTML = '<div class="cell-inner"><div class="cell-front"></div><div class="cell-back"></div></div>';
+        cell.innerHTML = '<div class="cell-inner"><div class="cell-front"></div><div class="cell-back"></div>';
         cell.classList.remove('flip');
     }
 }
@@ -35,7 +36,7 @@ function animateStars(positions) {
             cell.querySelector('.cell-back').innerHTML = '⭐';
             cell.classList.add('flip');
             index++;
-            setTimeout(showStar, 500);
+            setTimeout(showStar, 1000);
         }
     }
     showStar();
@@ -49,14 +50,14 @@ function getSelectedNumber() {
     const numberPicker = document.getElementById('number-select');
     const options = numberPicker.getElementsByClassName('number-option');
     const pickerHeight = numberPicker.clientHeight;
-    let selectedNumber = options[3].innerText; // Adjust to match the correct option position
+    let selectedNumber = options[2].innerText;
 
     for (let option of options) {
         const optionRect = option.getBoundingClientRect();
         const pickerRect = numberPicker.getBoundingClientRect();
 
-        if (optionRect.top >= pickerRect.top + pickerHeight / 3 &&
-            optionRect.bottom <= pickerRect.bottom - pickerHeight / 3) {
+        if (optionRect.top >= pickerRect.top + pickerHeight / 2 - optionRect.height / 2 &&
+            optionRect.bottom <= pickerRect.bottom - pickerHeight / 2 + optionRect.height / 2) {
             selectedNumber = option.innerText;
             break;
         }
@@ -84,6 +85,10 @@ document.getElementById('number-select').addEventListener('touchmove', function(
 });
 
 document.getElementById('number-select').addEventListener('touchend', function(event) {
+    centerSelectedNumber();
+});
+
+function centerSelectedNumber() {
     const numberPicker = document.getElementById('number-select');
     const options = numberPicker.getElementsByClassName('number-option');
     const pickerHeight = numberPicker.clientHeight;
@@ -103,7 +108,7 @@ document.getElementById('number-select').addEventListener('touchend', function(e
 
     numberPicker.scrollTop = closestOption.offsetTop - pickerHeight / 2 + closestOption.clientHeight / 2;
     highlightSelectedOption();
-});
+}
 
 function highlightSelectedOption() {
     const numberPicker = document.getElementById('number-select');
@@ -114,8 +119,8 @@ function highlightSelectedOption() {
         const optionRect = option.getBoundingClientRect();
         const pickerRect = numberPicker.getBoundingClientRect();
 
-        if (optionRect.top >= pickerRect.top + pickerHeight / 3 &&
-            optionRect.bottom <= pickerRect.bottom - pickerHeight / 3) {
+        if (optionRect.top >= pickerRect.top + pickerHeight / 2 - optionRect.height / 2 &&
+            optionRect.bottom <= pickerRect.bottom - pickerHeight / 2 + optionRect.height / 2) {
             option.classList.add('selected');
         } else {
             option.classList.remove('selected');

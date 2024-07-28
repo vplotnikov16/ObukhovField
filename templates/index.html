@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>Telegram Bot Web Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
@@ -26,15 +26,11 @@
             <span class="close-button">&times;</span>
             <div id="winners-text">WINNERS</div>
             <div id="number-select" class="number-picker">
-                <div class="number-option"></div>
-                <div class="number-option"></div>
-                <div class="number-option"></div>
+                <div class="number-option">1</div>
                 {% for i in range(2, 26) %}
                     <div class="number-option">{{ i }}</div>
                 {% endfor %}
-                <div class="number-option"></div>
-                <div class="number-option"></div>
-                <div class="number-option"></div>
+                <div class="number-option">26</div>
             </div>
             <button id="confirm">Подтвердить</button>
         </div>
