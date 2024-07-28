@@ -32,7 +32,9 @@ function animateStars(positions) {
     let index = 0;
     function showStar() {
         if (index < positions.length) {
-            const cell = document.getElementById(`cell-${positions[index]}`);
+            const [row, col] = positions[index].split('-').map(Number);
+            const cellIndex = (row - 1) * 5 + (col - 1);
+            const cell = document.getElementById(`cell-${cellIndex}`);
             cell.querySelector('.cell-back').innerHTML = '⭐';
             cell.classList.add('flip');
             index++;
@@ -50,7 +52,7 @@ function getSelectedNumber() {
     const numberPicker = document.getElementById('number-select');
     const options = numberPicker.getElementsByClassName('number-option');
     const pickerHeight = numberPicker.clientHeight;
-    let selectedNumber = options[2].innerText;
+    let selectedNumber = options[3].innerText;
 
     for (let option of options) {
         const optionRect = option.getBoundingClientRect();
@@ -127,3 +129,8 @@ function highlightSelectedOption() {
         }
     }
 }
+
+window.onload = function() {
+    document.getElementById('number-select').scrollTop = 3 * 40;
+    highlightSelectedOption();
+};
