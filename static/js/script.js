@@ -1,5 +1,5 @@
 document.getElementById('get-signal').addEventListener('click', function() {
-    document.getElementById('modal').style.display = 'block';
+    document.getElementById('modal').style.display = 'flex';
     centerSelectedNumber();
 });
 
@@ -23,7 +23,7 @@ document.getElementById('confirm').addEventListener('click', function() {
 function clearGrid() {
     for (let i = 0; i < 25; i++) {
         const cell = document.getElementById(`cell-${i}`);
-        cell.innerHTML = '<div class="cell-inner"><div class="cell-front"></div><div class="cell-back"></div>';
+        cell.innerHTML = '<div class="cell-inner"><div class="cell-front"></div><div class="cell-back"></div></div>';
         cell.classList.remove('flip');
     }
 }
