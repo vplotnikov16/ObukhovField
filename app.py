@@ -24,8 +24,10 @@ def index():
 
 @app.route('/get_signal', methods=['POST'])
 def get_signal():
+    global field_config
     data = request.get_json()
     number = str(data['number'])
+    field_config = load_config()
     positions = field_config.get(number, [])
     return jsonify({'stars_positions': positions})
 

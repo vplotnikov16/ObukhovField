@@ -7,34 +7,35 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <div class="container">
-        <div id="grid">
-            {% for i in range(25) %}
-                <div class="cell" id="cell-{{ i }}">
-                    <div class="cell-inner">
-                        <div class="cell-front"></div>
-                        <div class="cell-back"></div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <button id="get-signal">Получить сигнал</button>
-    </div>
-
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <div id="winners-text">WINNERS</div>
-            <div id="number-select" class="number-picker">
-                <div class="number-option">1</div>
-                {% for i in range(2, 26) %}
-                    <div class="number-option">{{ i }}</div>
-                {% endfor %}
-                <div class="number-option">26</div>
+<div class="container">
+    <div id="grid">
+        {% for i in range(25) %}
+        <div class="cell" id="cell-{{ i }}">
+            <div class="cell-inner">
+                <div class="cell-front"></div>
+                <div class="cell-back"></div>
             </div>
-            <button id="confirm">Подтвердить</button>
         </div>
+        {% endfor %}
     </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <button id="get-signal">Получить сигнал</button>
+</div>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div id="winners-text">WINNERS</div>
+        <div id="number-select" class="number-picker">
+            <div class="number-option empty">0</div>
+            <div class="number-option">1</div>
+            {% for i in range(2, 26) %}
+            <div class="number-option">{{ i }}</div>
+            {% endfor %}
+            <div class="number-option empty">26</div>
+        </div>
+        <button id="confirm">Подтвердить</button>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

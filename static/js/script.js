@@ -1,6 +1,6 @@
 document.getElementById('get-signal').addEventListener('click', function() {
     document.getElementById('modal').style.display = 'flex';
-    centerSelectedNumber();
+    centerSelectedNumber(); // Центрирование на выбранном числе
 });
 
 document.getElementById('confirm').addEventListener('click', function() {
@@ -52,7 +52,6 @@ function getSelectedNumber() {
     const numberPicker = document.getElementById('number-select');
     const options = numberPicker.getElementsByClassName('number-option');
     const pickerHeight = numberPicker.clientHeight;
-    let selectedNumber = options[3].innerText;
 
     for (let option of options) {
         const optionRect = option.getBoundingClientRect();
@@ -60,12 +59,11 @@ function getSelectedNumber() {
 
         if (optionRect.top >= pickerRect.top + pickerHeight / 2 - optionRect.height / 2 &&
             optionRect.bottom <= pickerRect.bottom - pickerHeight / 2 + optionRect.height / 2) {
-            selectedNumber = option.innerText;
-            break;
+            return option.innerText;
         }
     }
 
-    return selectedNumber;
+    return null;
 }
 
 document.getElementById('number-select').addEventListener('scroll', function() {
@@ -130,7 +128,11 @@ function highlightSelectedOption() {
     }
 }
 
+// Центрирование на числе 4 при загрузке страницы
 window.onload = function() {
-    document.getElementById('number-select').scrollTop = 3 * 40;
+    const numberPicker = document.getElementById('number-select');
+    const options = numberPicker.getElementsByClassName('number-option');
+    const optionHeight = options[0].clientHeight;
+    numberPicker.scrollTop = 3 * optionHeight; // 3-й индекс для числа 4
     highlightSelectedOption();
 };

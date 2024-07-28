@@ -217,3 +217,9 @@ button {
     transform: scale(0);
     opacity: 0;
 }
+
+
+.empty {
+    visibility: hidden;
+    height: 40px;
+}
