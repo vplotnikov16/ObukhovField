@@ -14,7 +14,7 @@ def webapp_builder() -> InlineKeyboardMarkup:
     builder.button(
         text="Mines Soft",
         web_app=WebAppInfo(
-            url="https://apt-rationally-eel.ngrok-free.app/"
+            url="https://84.54.44.82:5000"
         )
     )
     return builder.as_markup()
