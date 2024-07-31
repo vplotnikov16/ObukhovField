@@ -3,18 +3,18 @@ import json
 
 from functions import load_config, save_config
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
 # field_config = load_config()
 
 
-@app.route('/')
+@application.route('/')
 def index():
     return render_template('index.html')
 
 
-@app.route('/get_signal', methods=['POST'])
+@application.route('/get_signal', methods=['POST'])
 def get_signal():
     data = request.get_json()
     number = str(data['number'])
@@ -22,7 +22,7 @@ def get_signal():
     return jsonify({'stars_positions': positions})
 
 
-@app.route('/update_config', methods=['POST'])
+@application.route('/update_config', methods=['POST'])
 def update_config():
     field_config = load_config()
     try:
@@ -38,4 +38,4 @@ def update_config():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=False, ssl_context=('/root/server-cert.pem', '/root/server-key.pem'))
+    application.run(host="0.0.0.0", port=5000, debug=False, ssl_context=('/root/server-cert.pem', '/root/server-key.pem'))
