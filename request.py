@@ -1,13 +1,13 @@
 import requests
 
-url = 'http://localhost:5000/update_config'
+url = 'https://minessoftwebapp.ru/update_config'
 data = {
     "6": ["1-1",
           "1-2",
           "1-3",
           "1-4",
           "1-5",
-          "2-1"
+          "2-2"
           ]
 }
 headers = {

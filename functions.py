@@ -1,8 +1,7 @@
 import json
 import os
 
-ABS_FILE_PATH = os.path.abspath(os.path.dirname(__file__))
-ABS_DIR_PATH = os.path.dirname(ABS_FILE_PATH)
+ABS_DIR_PATH = os.path.abspath(os.path.dirname(__file__))
 CONFIG_NAME = "field_config.json"
 
 
