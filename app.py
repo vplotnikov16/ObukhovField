@@ -1,12 +1,8 @@
 from flask import Flask, render_template, request, jsonify
 import json
-
 from functions import load_config, save_config
 
 application = Flask(__name__)
-
-
-# field_config = load_config()
 
 
 @application.route('/')

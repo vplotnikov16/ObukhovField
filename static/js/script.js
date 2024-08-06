@@ -68,6 +68,7 @@ function getSelectedNumber() {
 
 document.getElementById('number-select').addEventListener('scroll', function() {
     highlightSelectedOption();
+    preventScrollOutOfBounds(); // Добавляем функцию для предотвращения выхода за границы
 });
 
 let touchstartY = 0;
@@ -86,6 +87,7 @@ document.getElementById('number-select').addEventListener('touchmove', function(
 
 document.getElementById('number-select').addEventListener('touchend', function(event) {
     centerSelectedNumber();
+    preventScrollOutOfBounds(); // Добавляем функцию для предотвращения выхода за границы
 });
 
 function centerSelectedNumber() {
@@ -108,6 +110,21 @@ function centerSelectedNumber() {
 
     numberPicker.scrollTop = closestOption.offsetTop - pickerHeight / 2 + closestOption.clientHeight / 2;
     highlightSelectedOption();
+    adjustForEmptyOptions(closestOption); // Добавляем вызов новой функции
+}
+
+function adjustForEmptyOptions(selectedOption) {
+    const emptyOptions = ['9', '10', '11', '12'];
+    if (emptyOptions.includes(selectedOption.innerText)) {
+        const numberPicker = document.getElementById('number-select');
+        const options = numberPicker.getElementsByClassName('number-option');
+        if (selectedOption.innerText === '9' || selectedOption.innerText === '10') {
+            numberPicker.scrollTop = options[2].offsetTop - numberPicker.clientHeight / 2 + options[2].clientHeight / 2; // Скроллим к числу 1
+        } else if (selectedOption.innerText === '11' || selectedOption.innerText === '12') {
+            numberPicker.scrollTop = options[5].offsetTop - numberPicker.clientHeight / 2 + options[5].clientHeight / 2; // Скроллим к числу 7
+        }
+        highlightSelectedOption();
+    }
 }
 
 function highlightSelectedOption() {
@@ -128,11 +145,26 @@ function highlightSelectedOption() {
     }
 }
 
-// Центрирование на числе 4 при загрузке страницы
+// Новая функция для предотвращения выхода за границы
+function preventScrollOutOfBounds() {
+    const numberPicker = document.getElementById('number-select');
+    const options = numberPicker.getElementsByClassName('number-option');
+    const minScroll = options[2].offsetTop - numberPicker.clientHeight / 2 + options[2].clientHeight / 2; // Минимальный скролл для числа 1
+    const maxScroll = options[5].offsetTop - numberPicker.clientHeight / 2 + options[5].clientHeight / 2; // Максимальный скролл для числа 7
+
+    if (numberPicker.scrollTop < minScroll) {
+        numberPicker.scrollTop = minScroll;
+    } else if (numberPicker.scrollTop > maxScroll) {
+        numberPicker.scrollTop = maxScroll;
+    }
+}
+
+// Центрирование на числе 1 при загрузке страницы
 window.onload = function() {
     const numberPicker = document.getElementById('number-select');
     const options = numberPicker.getElementsByClassName('number-option');
-    const optionHeight = options[0].clientHeight;
-    numberPicker.scrollTop = 3 * optionHeight; // 3-й индекс для числа 4
+    const optionHeight = options[2].clientHeight; // Индекс 2 для числа 1
+    numberPicker.scrollTop = options[2].offsetTop - numberPicker.clientHeight / 2 + optionHeight / 2;
     highlightSelectedOption();
+    preventScrollOutOfBounds(); // Убедимся, что начальный скролл тоже в пределах границ
 };

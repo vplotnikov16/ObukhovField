@@ -152,8 +152,10 @@ button {
     height: 40px;
     line-height: 40px;
     font-size: 24px;
+    font-family: 'Times New Roman', Times, serif;
     transition: font-size 0.2s, transform 0.2s;
     transform: scale(0.8);
+    color: #000;
 }
 
 .number-option.selected {
@@ -219,7 +221,6 @@ button {
     transform: scale(0);
     opacity: 0;
 }
-
 
 .empty {
     visibility: hidden;
