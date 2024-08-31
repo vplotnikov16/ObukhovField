@@ -92,125 +92,37 @@ button {
     background: linear-gradient(45deg, #9370db, #8a2be2);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     font-size: 24px;
+    margin-top: 20px;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 30% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 200px;
-    height: 200px;
-    text-align: center;
-    position: relative;
-    border-radius: 15px;
-}
-
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.number-picker {
-    height: 120px;
-    overflow-y: auto;
-    text-align: center;
-    margin: 10px 0;
-    position: relative;
+.spinbox {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
-.number-option {
-    height: 40px;
-    line-height: 40px;
+.spinbox button {
+    background: linear-gradient(45deg, #7158a3, #6241a1);
+    color: white;
     font-size: 24px;
-    font-family: 'Times New Roman', Times, serif;
-    transition: font-size 0.2s, transform 0.2s;
-    transform: scale(0.8);
-    color: #000;
-}
-
-.number-option.selected {
-    font-size: 32px;
-    transform: scale(1);
-    color: #000;
-}
-
-.number-picker::before,
-.number-picker::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
+    width: 40px;
     height: 40px;
-    pointer-events: none;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
 }
 
-.number-picker::before {
-    top: 0;
-}
-
-.number-picker::after {
-    bottom: 0;
-}
-
-#winners-text {
+.spinbox #number-display {
+    background: linear-gradient(45deg, #564273, #4b2e7a);
+    color: white;
     font-size: 24px;
-    color: grey;
-    animation: fadeInOut 3s infinite;
-}
-
-@keyframes fadeInOut {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-}
-
-@keyframes star-appear {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(0.5);
-        opacity: 0.5;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+    padding: 10px 20px;
+    border-radius: 10px;
+    min-width: 40px;
+    text-align: center;
 }
 
 .cell.flip .cell-back {
@@ -222,14 +134,23 @@ button {
     opacity: 0;
 }
 
-.empty {
-    visibility: hidden;
-    height: 40px;
+/* Стили для заголовка MINES */
+#mines-title {
+    font-size: 48px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    animation: fadeInOut 3s infinite;
 }
 
-#mines-title {
-    font-size: 50px;
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
+/* Анимация плавного затухания и появления */
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-    <div id="mines-title">MINES</div>
+    <div id="mines-title">MINES</div> <!-- Заголовок с ID -->
     <div id="grid">
         {% for i in range(25) %}
         <div class="cell" id="cell-{{ i }}">
@@ -22,25 +20,12 @@
         </div>
         {% endfor %}
     </div>
-    <button id="get-signal">Получить сигнал</button>
-</div>
-
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <div id="winners-text">WINNERS</div>
-        <div id="number-select" class="number-picker">
-            <div class="number-option empty">0</div>
-            <div class="number-option empty">0</div>
-            <div class="number-option">1</div>
-            <div class="number-option">3</div>
-            <div class="number-option">5</div>
-            <div class="number-option">7</div>
-            <div class="number-option empty">0</div>
-            <div class="number-option empty">0</div>
-        </div>
-        <button id="confirm">Подтвердить</button>
+    <div class="spinbox">
+        <button id="decrease-button">-</button>
+        <div id="number-display">1</div>
+        <button id="increase-button">+</button>
     </div>
+    <button id="get-signal">Получить сигнал</button>
 </div>
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
